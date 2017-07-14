@@ -1,4 +1,4 @@
-# An example read-only ORM in Kotlin
+# An example custom read-only ORM in Kotlin
 
 ## License
 
