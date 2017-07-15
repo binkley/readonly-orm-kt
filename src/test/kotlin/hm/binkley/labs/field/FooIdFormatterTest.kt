@@ -4,5 +4,5 @@ import hm.binkley.labs.a.AInputRecord
 import hm.binkley.labs.field.FooIdFormatter.Companion
 
 internal class FooIdFormatterTest : FormatterTestBase<AInputRecord>(
-        AInputRecord("FUBAR lives!"), Companion::fooId,
+        AInputRecord("FUBAR lives!", 3), Companion::fooId,
         "FUBAR lives!")
