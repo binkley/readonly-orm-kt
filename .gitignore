@@ -1,2 +1,4 @@
 /.gradle/
+/.idea/
 /build/
+/readonly-orm-kt.iml
