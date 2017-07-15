@@ -1,4 +1,8 @@
+group = 'hm.binkley.labs'
+
 apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
 
 repositories {
     mavenCentral()
