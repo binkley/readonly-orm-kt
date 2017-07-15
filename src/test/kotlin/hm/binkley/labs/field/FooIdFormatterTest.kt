@@ -1,15 +1,8 @@
 package hm.binkley.labs.field
 
 import hm.binkley.labs.a.AInputRecord
-import hm.binkley.labs.field.FooIdFormatter.Companion.fooId
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.junit.Test
+import hm.binkley.labs.field.FooIdFormatter.Companion
 
-internal class FooIdFormatterTest {
-    @Test
-    fun shouldFormat() {
-        assertThat(fooId(AInputRecord("FUBAR lives!")),
-                `is`("FUBAR lives!"))
-    }
-}
+internal class FooIdFormatterTest : FormatterTestBase<AInputRecord>(
+        AInputRecord("FUBAR lives!"), Companion::fooId,
+        "FUBAR lives!")
