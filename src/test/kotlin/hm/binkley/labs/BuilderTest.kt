@@ -2,8 +2,7 @@ package hm.binkley.labs
 
 import hm.binkley.labs.a.AInputRecord
 import hm.binkley.labs.b.BOutputRecord.Companion
-import hm.binkley.labs.input.InputRecord
-import hm.binkley.labs.output.OutputRecord
+import hm.binkley.labs.b.BOutputRecord.Companion.asBOutputRecord
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Rule
@@ -14,7 +13,6 @@ import org.mockito.Mockito.eq
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
-import java.io.File
 import java.sql.ResultSet
 
 class BuilderTest {
@@ -40,29 +38,5 @@ class BuilderTest {
         assertThat(file.readLines(), `is`(listOf(
                 "A|Bar marker?|3|3 × A",
                 "B|Bar marker?|4|4 × B")))
-    }
-
-    private fun <I : InputRecord, O : OutputRecord> build(
-            results: ResultSet,
-            toInputRecord: (ResultSet) -> I,
-            toOutputRecord: (I) -> O,
-            file: File) {
-        results.use { input ->
-            file.printWriter().use { output ->
-                ResultSetIterator(input).asSequence().
-                        map(toInputRecord).
-                        map(toOutputRecord).
-                        map { it.fields() }.
-                        map { it.joinToString("|") }.
-                        forEach { output.println(it) }
-            }
-        }
-    }
-
-    private class ResultSetIterator(
-            private val results: ResultSet) : Iterator<ResultSet> {
-        override fun hasNext() = results.next()
-
-        override fun next() = results
     }
 }
