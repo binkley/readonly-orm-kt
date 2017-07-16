@@ -1,7 +1,7 @@
 package hm.binkley.labs
 
 import hm.binkley.labs.a.AInputRecord
-import hm.binkley.labs.a.AOutputRecord
+import hm.binkley.labs.b.BOutputRecord.Companion
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.eq
@@ -21,7 +21,7 @@ class SpikeTest {
 
         ResultSetIterator(results).asSequence().
                 map(::AInputRecord).
-                map(::AOutputRecord).
+                map(Companion::asBOutputRecord).
                 map { it.fields() }.
                 map { it.joinToString("|") }.
                 forEach { println(it) }
