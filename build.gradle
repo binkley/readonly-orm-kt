@@ -56,5 +56,6 @@ check.dependsOn integrationTest
 integrationTest.mustRunAfter test
 
 tasks.withType(Test) {
-    reports.html.destination = file("${reporting.baseDir}/${name}")
+    // TODO: Assigning to the `destination` property gives deprecated?
+    reports.html.setDestination(file("${reporting.baseDir}/${name}"))
 }
