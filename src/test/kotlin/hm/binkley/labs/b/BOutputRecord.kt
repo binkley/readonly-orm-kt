@@ -15,6 +15,10 @@ data class BOutputRecord(val fooId: String, val barMarker: String,
     override fun fields() = listOf(fooId, barMarker, bazCount, fooBaz)
 
     companion object {
+        /**
+         * @todo This should be a secondary constructor, when Kotlin supports
+         * generics on those
+         */
         fun <I> asBOutputRecord(record: I)
                 where I : InputRecord, I : HasFooId, I : HasBazCount
                 = BOutputRecord(

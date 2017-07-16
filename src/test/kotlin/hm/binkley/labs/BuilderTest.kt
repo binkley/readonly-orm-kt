@@ -2,7 +2,6 @@ package hm.binkley.labs
 
 import hm.binkley.labs.a.AInputRecord
 import hm.binkley.labs.b.BOutputRecord.Companion
-import hm.binkley.labs.b.BOutputRecord.Companion.asBOutputRecord
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Rule
@@ -27,7 +26,7 @@ class BuilderTest {
 
         val file = tmpdir.newFile()
 
-        build(results, ::AInputRecord, Companion::asBOutputRecord, file) {
+        build(results, file, ::AInputRecord, Companion::asBOutputRecord) {
             it.joinToString("|")
         }
 

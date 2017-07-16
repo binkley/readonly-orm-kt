@@ -7,9 +7,9 @@ import java.sql.ResultSet
 
 fun <I : InputRecord, O : OutputRecord> build(
         results: ResultSet,
+        file: File,
         toInputRecord: (ResultSet) -> I,
         toOutputRecord: (I) -> O,
-        file: File,
         toLine: (List<*>) -> String) {
     results.use { input ->
         file.printWriter().use { output ->
