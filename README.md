@@ -3,3 +3,10 @@
 ## License
 
 This software is in the Public Domain.  Please see [LICENSE.md](LICENSE.md).
+
+## Issues
+
+* IntelliJ has problems with classpath for integration tests.  Moved
+  integration tests to unit tests sourceset for now.
+* `fields()` could be automated through reflection; unclear if this is the
+  right thing to do.
