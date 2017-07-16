@@ -9,6 +9,7 @@ fun <I : InputRecord, O : OutputRecord> build(
         results: ResultSet,
         toInputRecord: (ResultSet) -> I,
         toOutputRecord: (I) -> O,
+        toLine: (List<*>) -> String,
         file: File) {
     results.use { input ->
         file.printWriter().use { output ->
@@ -16,7 +17,7 @@ fun <I : InputRecord, O : OutputRecord> build(
                     map(toInputRecord).
                     map(toOutputRecord).
                     map { it.fields() }.
-                    map { it.joinToString("|") }.
+                    map(toLine).
                     forEach { output.println(it) }
         }
     }
