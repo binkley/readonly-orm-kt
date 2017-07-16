@@ -33,7 +33,7 @@ class BuilderTest {
         verify(results, times(1)).close()
 
         assertThat(file.readLines(), `is`(listOf(
-                "A|Bar marker?|3|3 × A",
-                "B|Bar marker?|4|4 × B")))
+                "A|Bar marker?|3|3 × A|",
+                "B|Bar marker?|4|4 × B|")))
     }
 }

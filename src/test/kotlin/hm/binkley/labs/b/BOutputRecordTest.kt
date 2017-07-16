@@ -11,6 +11,6 @@ internal class BOutputRecordTest {
     fun shouldConvert() {
         assertThat(asBOutputRecord(AInputRecord("FUBAR lives!", 3)),
                 `is`(BOutputRecord("FUBAR lives!", "Bar marker?", 3,
-                        "3 × FUBAR lives!")))
+                        "3 × FUBAR lives!", "")))
     }
 }
