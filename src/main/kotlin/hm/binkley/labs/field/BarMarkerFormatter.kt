@@ -6,7 +6,8 @@ class BarMarkerFormatter<in I> : Formatter<I> where I : InputRecord {
     override fun format(record: I) = "Bar marker?"
 
     companion object {
-        fun <I> barMarker(record: I): String where I : InputRecord
+        fun <I> barMarker(record: I)
+                where I : InputRecord
                 = BarMarkerFormatter<I>().format(record)
     }
 }
