@@ -10,9 +10,9 @@ import org.mockito.Mockito.eq
 import org.mockito.Mockito.mock
 import java.sql.ResultSet
 
-class SpikeTest {
+class BuilderTest {
     @Test
-    fun xxx() {
+    fun shouldBuild() {
         val results = mock(ResultSet::class.java)
         `when`(results.next()).
                 thenReturn(true, true, false)
@@ -38,7 +38,7 @@ class SpikeTest {
                 forEach(action)
     }
 
-    class ResultSetIterator(
+    private class ResultSetIterator(
             private val results: ResultSet) : Iterator<ResultSet> {
         override fun hasNext() = results.next()
 
