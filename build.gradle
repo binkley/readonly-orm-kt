@@ -29,4 +29,5 @@ dependencies {
     testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
     testCompile group: 'org.hamcrest', name: 'hamcrest-junit',
             version: '2.0.0.0'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.8.47'
 }
