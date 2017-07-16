@@ -9,8 +9,8 @@ fun <I : InputRecord, O : OutputRecord> build(
         results: ResultSet,
         toInputRecord: (ResultSet) -> I,
         toOutputRecord: (I) -> O,
-        toLine: (List<*>) -> String,
-        file: File) {
+        file: File,
+        toLine: (List<*>) -> String) {
     results.use { input ->
         file.printWriter().use { output ->
             ResultSetIterator(input).asSequence().
