@@ -1,4 +1,4 @@
-package hm.binkley.labs.input
+package hm.binkley.labs.output
 
 interface OutputRecord {
     fun fields(): List<*>

@@ -7,7 +7,7 @@ import hm.binkley.labs.field.FooIdFormatter.Companion.fooId
 import hm.binkley.labs.input.HasBazCount
 import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord
-import hm.binkley.labs.input.OutputRecord
+import hm.binkley.labs.output.OutputRecord
 
 data class BOutputRecord(val fooId: String, val barMarker: String,
                          val bazCount: Int, val fooBaz: String)
