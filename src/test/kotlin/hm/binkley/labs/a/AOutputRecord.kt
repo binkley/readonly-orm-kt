@@ -9,11 +9,11 @@ import hm.binkley.labs.input.OutputRecord
 data class AOutputRecord(val fooId: String, val barMarker: String,
                          val bazCount: Int, val fooBaz: String)
     : OutputRecord {
-    constructor(inputRecord: AInputRecord) : this(
-            fooId(inputRecord),
-            barMarker(inputRecord),
-            bazCount(inputRecord),
-            fooBaz(inputRecord))
+    constructor(record: AInputRecord) : this(
+            fooId(record),
+            barMarker(record),
+            bazCount(record),
+            fooBaz(record))
 
     override fun fields(): List<Any?>
             = listOf(fooId, barMarker, bazCount, fooBaz)
