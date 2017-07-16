@@ -8,6 +8,8 @@ import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.eq
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import java.sql.ResultSet
 
 class BuilderTest {
@@ -24,6 +26,8 @@ class BuilderTest {
         build(results, ::AInputRecord, Companion::asBOutputRecord) {
             println(it.joinToString("|"))
         }
+
+        verify(results, times(1)).close()
     }
 
     private fun <I : InputRecord, O : OutputRecord> build(
@@ -31,11 +35,13 @@ class BuilderTest {
             toInputRecord: (ResultSet) -> I,
             toOutputRecord: (I) -> O,
             action: (List<*>) -> Unit) {
-        ResultSetIterator(results).asSequence().
-                map(toInputRecord).
-                map(toOutputRecord).
-                map { it.fields() }.
-                forEach(action)
+        results.use {
+            ResultSetIterator(results).asSequence().
+                    map(toInputRecord).
+                    map(toOutputRecord).
+                    map { it.fields() }.
+                    forEach(action)
+        }
     }
 
     private class ResultSetIterator(
