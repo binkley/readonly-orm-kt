@@ -5,10 +5,10 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.Test
 
-abstract class FormatterTestBase<I>(
+abstract class FormatterTestBase<I, T>(
         private val record: I,
-        private val format: (I) -> String,
-        private val expected: String)
+        private val format: (I) -> T,
+        private val expected: T)
 where I : InputRecord {
     @Test
     fun shouldFormat() {

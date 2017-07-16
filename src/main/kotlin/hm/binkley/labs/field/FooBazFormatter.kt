@@ -4,7 +4,7 @@ import hm.binkley.labs.input.HasBazCount
 import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord
 
-class FooBazFormatter<in I> : Formatter<I>
+class FooBazFormatter<in I> : Formatter<I, String>
 where I : InputRecord, I : HasFooId, I : HasBazCount {
     override fun format(record: I) = "${record.bazCount} × ${record.fooId}"
 
