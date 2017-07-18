@@ -10,7 +10,7 @@ where I : InputRecord, I : HasFooId, I : HasBazCount {
 
     companion object {
         fun <I> fooBaz(record: I)
-                where I : InputRecord, I : HasFooId, I : HasBazCount
-                = FooBazFormatter<I>().format(record)
+                where I : InputRecord, I : HasFooId, I : HasBazCount = FooBazFormatter<I>().format(
+                record)
     }
 }

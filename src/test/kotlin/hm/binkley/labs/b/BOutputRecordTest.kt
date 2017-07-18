@@ -7,8 +7,7 @@ import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Test
 
 internal class BOutputRecordTest {
-    @Test
-    fun shouldConvert() {
+    @Test fun shouldConvert() {
         assertThat(asBOutputRecord(AInputRecord("FUBAR lives!", 3)),
                 `is`(BOutputRecord("FUBAR lives!", "Bar marker?", 3,
                         "3 × FUBAR lives!", "")))

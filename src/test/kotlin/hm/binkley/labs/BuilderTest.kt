@@ -15,18 +15,13 @@ import org.mockito.Mockito.verify
 import java.sql.ResultSet
 
 class BuilderTest {
-    @Rule @JvmField
-    val tmpdir = TemporaryFolder()
+    @Rule @JvmField val tmpdir = TemporaryFolder()
 
-    @Test
-    fun shouldBuild() {
+    @Test fun shouldBuild() {
         val results = mock(ResultSet::class.java)
-        `when`(results.next()).
-                thenReturn(true, true, false)
-        `when`(results.getString(eq("fooId"))).
-                thenReturn("A", "B")
-        `when`(results.getInt(eq("bazCount"))).
-                thenReturn(3, 4)
+        `when`(results.next()).thenReturn(true, true, false)
+        `when`(results.getString(eq("fooId"))).thenReturn("A", "B")
+        `when`(results.getInt(eq("bazCount"))).thenReturn(3, 4)
 
         val file = tmpdir.newFile()
 
@@ -36,8 +31,7 @@ class BuilderTest {
 
         verify(results, times(1)).close()
 
-        assertThat(file.readLines(), `is`(listOf(
-                "A|Bar marker?|3|3 × A|",
+        assertThat(file.readLines(), `is`(listOf("A|Bar marker?|3|3 × A|",
                 "B|Bar marker?|4|4 × B|")))
     }
 }

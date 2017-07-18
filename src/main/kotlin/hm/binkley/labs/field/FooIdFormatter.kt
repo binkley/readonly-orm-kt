@@ -9,7 +9,7 @@ where I : InputRecord, I : HasFooId {
 
     companion object {
         fun <I> fooId(record: I)
-                where I : InputRecord, I : HasFooId
-                = FooIdFormatter<I>().format(record)
+                where I : InputRecord, I : HasFooId = FooIdFormatter<I>().format(
+                record)
     }
 }

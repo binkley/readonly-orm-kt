@@ -8,7 +8,6 @@ where I : InputRecord {
 
     companion object {
         fun <I> barMarker(record: I)
-                where I : InputRecord
-                = BarMarkerFormatter<I>().format(record)
+                where I : InputRecord = BarMarkerFormatter<I>().format(record)
     }
 }

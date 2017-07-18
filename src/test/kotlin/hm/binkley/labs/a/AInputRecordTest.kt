@@ -9,15 +9,11 @@ import org.mockito.Mockito.mock
 import java.sql.ResultSet
 
 class AInputRecordTest {
-    @Test
-    fun shouldConstruct() {
+    @Test fun shouldConstruct() {
         val results = mock(ResultSet::class.java)
-        `when`(results.getString(eq("fooId"))).
-                thenReturn("FUBAR lives!")
-        `when`(results.getInt(eq("bazCount"))).
-                thenReturn(3)
+        `when`(results.getString(eq("fooId"))).thenReturn("FUBAR lives!")
+        `when`(results.getInt(eq("bazCount"))).thenReturn(3)
 
-        assertThat(AInputRecord(results),
-                `is`(AInputRecord("FUBAR lives!", 3)))
+        assertThat(AInputRecord(results), `is`(AInputRecord("FUBAR lives!", 3)))
     }
 }

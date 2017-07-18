@@ -8,7 +8,6 @@ where I : InputRecord {
 
     companion object {
         fun <I> quxMissing(record: I)
-                where I : InputRecord
-                = QuxMissingFormatter<I>().format(record)
+                where I : InputRecord = QuxMissingFormatter<I>().format(record)
     }
 }
