@@ -12,13 +12,13 @@ fun <I : InputRecord, O : OutputRecord> build(
         toOutputRecord: (I) -> O,
         toLine: (List<*>) -> String) {
     results.use { input ->
-        file.printWriter().use { output ->
+        file.bufferedWriter().use { output ->
             ResultSetIterator(input).asSequence().
                     map(toInputRecord).
                     map(toOutputRecord).
                     map { it.fields() }.
                     map(toLine).
-                    forEach { output.println(it) }
+                    forEach { output.append(it); output.append('\n') }
         }
     }
 }
