@@ -10,16 +10,14 @@ fun <I : InputRecord, O : OutputRecord> build(
         file: File,
         toInputRecord: (ResultSet) -> I,
         toOutputRecord: (I) -> O,
-        toLine: (List<*>) -> String) {
-    results.use { input ->
-        file.bufferedWriter().use { output ->
-            ResultSetIterator(input).asSequence().
-                    map(toInputRecord).
-                    map(toOutputRecord).
-                    map { it.fields() }.
-                    map(toLine).
-                    forEach { output.append(it); output.append('\n') }
-        }
+        toLine: (List<*>) -> String) = results.use { input ->
+    file.bufferedWriter().use { output ->
+        ResultSetIterator(input).asSequence().
+                map(toInputRecord).
+                map(toOutputRecord).
+                map { it.fields() }.
+                map(toLine).
+                forEach { output.append(it); output.append('\n') }
     }
 }
 
