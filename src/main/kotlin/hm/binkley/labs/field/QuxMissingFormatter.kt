@@ -1,6 +1,7 @@
 package hm.binkley.labs.field
 
 import hm.binkley.labs.input.InputRecord
+import hm.binkley.labs.output.OutputRecord.Field
 
 class QuxMissingFormatter<in I> : Formatter<I, String>
 where I : InputRecord {
@@ -9,5 +10,8 @@ where I : InputRecord {
     companion object {
         fun <I> quxMissing(record: I)
                 where I : InputRecord = QuxMissingFormatter<I>().format(record)
+
+        fun quxMissingField(value: String) = Field("quxMissing", value,
+                String::class.java)
     }
 }

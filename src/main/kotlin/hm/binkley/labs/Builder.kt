@@ -22,7 +22,7 @@ fun <I : InputRecord, O : OutputRecord> build(results: ResultSet, file: File,
 private fun <O : OutputRecord> writeTo(output: Writer,
         toLine: (List<*>) -> String): (O) -> Unit = {
     output.run {
-        append(toLine(it.fields()))
+        append(toLine(it.fields().map { it.value }))
         append('\n')
     }
 }

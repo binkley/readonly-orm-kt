@@ -1,10 +1,15 @@
 package hm.binkley.labs.b
 
 import hm.binkley.labs.field.BarMarkerFormatter.Companion.barMarker
+import hm.binkley.labs.field.BarMarkerFormatter.Companion.barMarkerField
 import hm.binkley.labs.field.BazCountFormatter.Companion.bazCount
+import hm.binkley.labs.field.BazCountFormatter.Companion.bazCountField
 import hm.binkley.labs.field.FooBazFormatter.Companion.fooBaz
+import hm.binkley.labs.field.FooBazFormatter.Companion.fooBazField
 import hm.binkley.labs.field.FooIdFormatter.Companion.fooId
+import hm.binkley.labs.field.FooIdFormatter.Companion.fooIdField
 import hm.binkley.labs.field.QuxMissingFormatter.Companion.quxMissing
+import hm.binkley.labs.field.QuxMissingFormatter.Companion.quxMissingField
 import hm.binkley.labs.input.HasBazCount
 import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord
@@ -14,8 +19,9 @@ data class BOutputRecord(private val fooId: String,
         private val barMarker: String, private val bazCount: Int,
         private val fooBaz: String,
         private val quxMissing: String) : OutputRecord {
-    override fun fields() = listOf(fooId, barMarker, bazCount, fooBaz,
-            quxMissing)
+    override fun fields() = listOf(fooIdField(fooId), barMarkerField(barMarker),
+            bazCountField(bazCount), fooBazField(fooBaz),
+            quxMissingField(quxMissing))
 
     companion object {
         /**
