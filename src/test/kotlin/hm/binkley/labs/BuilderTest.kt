@@ -26,7 +26,7 @@ class BuilderTest {
         val file = tmpdir.newFile()
 
         build(results, file, ::AInputRecord, Companion::asBOutputRecord) {
-            it.joinToString("|")
+            it.map { it.value }.joinToString("|")
         }
 
         verify(results, times(1)).close()
