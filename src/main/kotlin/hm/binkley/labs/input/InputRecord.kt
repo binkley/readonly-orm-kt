@@ -1,3 +1,7 @@
 package hm.binkley.labs.input
 
-interface InputRecord
+import org.jetbrains.exposed.sql.Table
+
+interface InputRecord {
+    fun table(): Table
+}
