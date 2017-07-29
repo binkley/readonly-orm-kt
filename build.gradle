@@ -1,5 +1,8 @@
 buildscript {
     ext.kotlin_version = '1.2-M1'
+    ext.detekt_version = '1.0.0.M13.2'
+    ext.ktlint_version = '0.9.0'
+    ext.mockito_version = '2.8.47'
 
     repositories {
         mavenCentral()
@@ -11,7 +14,7 @@ buildscript {
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin',
                 version: "$kotlin_version"
         classpath group: 'io.gitlab.arturbosch.detekt',
-                name: 'detekt-gradle-plugin', version: '1.0.0.M13.2'
+                name: 'detekt-gradle-plugin', version: "${detekt_version}"
     }
 }
 
@@ -35,13 +38,15 @@ configurations {
 }
 
 dependencies {
-    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.9.0'
+    ktlint group: 'com.github.shyiko', name: 'ktlint',
+            version: "${ktlint_version}"
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
     testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
     testCompile group: 'org.hamcrest', name: 'hamcrest-junit',
             version: '2.0.0.0'
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.8.47'
+    testCompile group: 'org.mockito', name: 'mockito-core',
+            version: "${mockito_version}"
 }
 
 jacoco {
