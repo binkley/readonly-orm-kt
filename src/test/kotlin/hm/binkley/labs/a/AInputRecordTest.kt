@@ -8,7 +8,7 @@ import org.mockito.Mockito.eq
 import org.mockito.Mockito.mock
 import java.sql.ResultSet
 
-class AInputRecordTest {
+internal class AInputRecordTest {
     @Test fun shouldConstruct() {
         val results = mock(ResultSet::class.java)
         `when`(results.getString(eq("fooId"))).thenReturn("FUBAR lives!")
