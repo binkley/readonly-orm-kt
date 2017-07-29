@@ -6,7 +6,7 @@ buildscript {
 
     repositories {
         mavenCentral()
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         maven { url 'https://plugins.gradle.org/m2' }
     }
 
