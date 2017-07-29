@@ -54,7 +54,7 @@ jacocoTestCoverageVerification {
 
 spotless {
     kotlin {
-        ktlint()
+        ktlint('0.9.0')
     }
 }
 
