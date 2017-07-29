@@ -14,7 +14,6 @@ import hm.binkley.labs.input.HasBazCount
 import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord
 import hm.binkley.labs.output.OutputRecord
-import org.jetbrains.exposed.sql.Table
 
 data class BOutputRecord(private val fooId: String,
         private val barMarker: String, private val bazCount: Int,
@@ -23,14 +22,6 @@ data class BOutputRecord(private val fooId: String,
     override fun fields() = listOf(fooIdField(fooId), barMarkerField(barMarker),
             bazCountField(bazCount), fooBazField(fooBaz),
             quxMissingField(quxMissing))
-
-    override fun table(): Table = object : Table() {
-        val fooId = text("foo_id").primaryKey()
-        val barMarker = text("bar_marker")
-        val bazCount = integer("baz_count")
-        val fooBaz = text("foo_baz")
-        val quxMissing = text("qux_missing").nullable()
-    }
 
     companion object {
         /**
