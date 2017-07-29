@@ -54,6 +54,8 @@ dependencies {
 
 detekt {
     profile('main') {
+        config = "$projectDir/config/detekt-config.yml"
+        input = "$projectDir/src/main/kotlin"
         output = "$projectDir/build/reports/detekt/report.xml"
         outputFormat = 'xml'
     }
