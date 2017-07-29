@@ -9,8 +9,6 @@ buildscript {
     dependencies {
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin',
                 version: "$kotlin_version"
-        classpath group: 'com.diffplug.spotless',
-                name: 'spotless-plugin-gradle', version: '3.4.1'
         classpath group: 'io.gitlab.arturbosch.detekt',
                 name: 'detekt-gradle-plugin', version: '1.0.0.M13.2'
     }
@@ -21,7 +19,6 @@ version = '0-SNAPSHOT'
 
 apply plugin: 'kotlin'
 apply plugin: 'jacoco'
-apply plugin: 'com.diffplug.gradle.spotless'
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
 repositories {
@@ -31,7 +28,12 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
+configurations {
+    ktlint
+}
+
 dependencies {
+    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.9.0'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre8'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
     compile group: 'org.jetbrains.exposed', name: 'exposed', version: '0.8.4'
@@ -55,10 +57,10 @@ jacocoTestCoverageVerification {
     }
 }
 
-spotless {
-    kotlin {
-        ktlint('0.9.0')
-    }
+task ktlint(type: JavaExec) {
+    main = 'com.github.shyiko.ktlint.Main'
+    classpath = configurations.ktlint
+    args 'src/**/*.kt'
 }
 
 check.dependsOn jacocoTestReport
@@ -66,3 +68,4 @@ check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.mustRunAfter jacocoTestReport
 
 check.dependsOn detektCheck
+check.dependsOn ktlint
