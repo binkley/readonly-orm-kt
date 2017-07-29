@@ -11,6 +11,8 @@ buildscript {
                 version: "$kotlin_version"
         classpath group: 'com.diffplug.spotless',
                 name: 'spotless-plugin-gradle', version: '3.4.1'
+        classpath group: 'io.gitlab.arturbosch.detekt',
+                name: 'detekt-gradle-plugin', version: '1.0.0.M13.2'
     }
 }
 
@@ -20,6 +22,7 @@ version = '0-SNAPSHOT'
 apply plugin: 'kotlin'
 apply plugin: 'jacoco'
 apply plugin: 'com.diffplug.gradle.spotless'
+apply plugin: 'io.gitlab.arturbosch.detekt'
 
 repositories {
     mavenCentral()
@@ -62,3 +65,4 @@ check.dependsOn jacocoTestReport
 check.dependsOn jacocoTestCoverageVerification
 jacocoTestCoverageVerification.mustRunAfter jacocoTestReport
 
+check.dependsOn detektCheck
