@@ -23,8 +23,7 @@ fun <I : InputRecord, O : OutputRecord> build(
         results: ResultSet, file: File,
         toLine: (List<Field<*>>) -> String)
         = file.bufferedWriter().use { output ->
-    build(factory, results, writeTo(output,
-            toLine))
+    build(factory, results, writeTo(output, toLine))
 }
 
 private fun <O : OutputRecord> saveTo(
