@@ -2,29 +2,29 @@ package hm.binkley.labs
 
 import hm.binkley.labs.input.InputRecord
 import hm.binkley.labs.output.OutputRecord
+import hm.binkley.labs.output.OutputRecord.Field
 import java.io.File
 import java.io.Writer
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
 fun <I : InputRecord, O : OutputRecord> build(
+        factory: RecordFactory<I, O>,
         results: ResultSet,
-        toInputRecord: (ResultSet) -> I,
-        toOutputRecord: (I) -> O,
         write: (O) -> Unit) = results.use { input ->
     ResultSetIterator(input).asSequence().
-            map(toInputRecord).
-            map(toOutputRecord).
+            map { factory.toInputRecord(it) }.
+            map { factory.toOutputRecord(it) }.
             forEach(write)
 }
 
 fun <I : InputRecord, O : OutputRecord> build(
+        factory: RecordFactory<I, O>,
         results: ResultSet, file: File,
-        toInputRecord: (ResultSet) -> I,
-        toOutputRecord: (I) -> O,
-        toLine: (List<OutputRecord.Field<*>>) -> String)
+        toLine: (List<Field<*>>) -> String)
         = file.bufferedWriter().use { output ->
-    build(results, toInputRecord, toOutputRecord, writeTo(output, toLine))
+    build(factory, results, writeTo(output,
+            toLine))
 }
 
 private fun <O : OutputRecord> saveTo(

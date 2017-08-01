@@ -1,7 +1,5 @@
 package hm.binkley.labs
 
-import hm.binkley.labs.a.AInputRecord
-import hm.binkley.labs.b.BOutputRecord.Companion
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Rule
@@ -25,7 +23,7 @@ class BuilderTest {
 
         val file = tmpdir.newFile()
 
-        build(results, file, ::AInputRecord, Companion::asBOutputRecord) {
+        build(ABRecordFactory(), results, file) {
             it.map { it.value }.joinToString("|")
         }
 
