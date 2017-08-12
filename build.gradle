@@ -1,7 +1,8 @@
 buildscript {
     ext {
-        kotlin_version = '1.2-M1'
-        detekt_version = '1.0.0.M13.2'
+        kotlin_version = '1.2-M2'
+        detekt_version = '1.0.0.RC2'
+        hamcrest_version = '2.0.0.0'
         ktlint_version = '0.9.0'
         mockito_version = '2.8.47'
     }
@@ -47,7 +48,7 @@ dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
     testCompile group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit'
     testCompile group: 'org.hamcrest', name: 'hamcrest-junit',
-            version: '2.0.0.0'
+            version: "${hamcrest_version}"
     testCompile group: 'org.mockito', name: 'mockito-core',
             version: "${mockito_version}"
 }
@@ -57,14 +58,12 @@ detekt {
         config = "$projectDir/config/detekt-config.yml"
         input = "$projectDir/src/main/kotlin"
         output = "$projectDir/build/reports/detekt/report.xml"
-        outputFormat = 'xml'
     }
 }
 
 task detektReport {
     doLast {
-        ant.
-        ant.xslt(in: "$projectDir/build/reports/detekt/report.xml",
+        ant.xslt(in: "$projectDir/build/reports/detekt/report.xml/detekt-checkstyle.xml",
                 out: "$projectDir/build/reports/detekt/index.html",
                 style: "$projectDir/config/checkstyle/checkstyle-noframes-severity-sorted.xsl") {
         }
