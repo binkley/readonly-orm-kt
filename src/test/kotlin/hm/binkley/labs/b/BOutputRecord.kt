@@ -15,11 +15,14 @@ import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord
 import hm.binkley.labs.output.OutputRecord
 
-data class BOutputRecord(private val fooId: String,
-        private val barMarker: String, private val bazCount: Int,
+data class BOutputRecord(
+        private val fooId: String,
+        private val barMarker: String,
+        private val bazCount: Int,
         private val fooBaz: String,
         private val quxMissing: String) : OutputRecord {
-    override fun fields() = listOf(fooIdField(fooId), barMarkerField(barMarker),
+    override fun fields() = listOf(fooIdField(fooId),
+            barMarkerField(barMarker),
             bazCountField(bazCount), fooBazField(fooBaz),
             quxMissingField(quxMissing))
 

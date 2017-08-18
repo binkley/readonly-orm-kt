@@ -22,21 +22,21 @@ fun <I : InputRecord, O : OutputRecord> build(
 fun <I : InputRecord, O : OutputRecord> build(
         factory: RecordFactory<I, O>,
         results: ResultSet, file: File,
-        toLine: (List<Field<*>>) -> String)
+        toLine: (Iterable<Field<*>>) -> String)
         = file.bufferedWriter().use { output ->
     build(factory, results, writeTo(output, toLine))
 }
 
 private fun <O : OutputRecord> saveTo(
         insert: PreparedStatement,
-        setFields: (PreparedStatement, List<*>) -> Unit): (O) -> Unit = {
+        setFields: (PreparedStatement, Iterable<*>) -> Unit): (O) -> Unit = {
     setFields(insert, it.fields())
     insert.executeUpdate()
 }
 
 private fun <O : OutputRecord> writeTo(
         output: Writer,
-        toLine: (List<OutputRecord.Field<*>>) -> String): (O) -> Unit = {
+        toLine: (Iterable<OutputRecord.Field<*>>) -> String): (O) -> Unit = {
     output.run {
         append(toLine(it.fields()))
         append('\n')
