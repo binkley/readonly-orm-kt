@@ -14,6 +14,7 @@ fun <I : InputRecord, O : OutputRecord> build(
         write: (O) -> Unit) = results.use { input ->
     ResultSetIterator(input).asSequence().
             map { factory.toInputRecord(it) }.
+            flatMap { factory.maybeDrop(it) }.
             map { factory.toOutputRecord(it) }.
             forEach(write)
 }

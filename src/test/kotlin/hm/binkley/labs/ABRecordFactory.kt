@@ -9,6 +9,9 @@ class ABRecordFactory : RecordFactory<AInputRecord, BOutputRecord> {
         return AInputRecord(results)
     }
 
+    override fun maybeDrop(inputRecord: AInputRecord)
+            = sequenceOf(inputRecord)
+
     override fun toOutputRecord(inputRecord: AInputRecord): BOutputRecord {
         return BOutputRecord.asBOutputRecord(inputRecord)
     }
