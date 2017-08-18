@@ -1,5 +1,7 @@
 # An example custom read-only ORM in Kotlin
 
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+
 ## License
 
 This software is in the Public Domain.  Please see [LICENSE.md](LICENSE.md).
