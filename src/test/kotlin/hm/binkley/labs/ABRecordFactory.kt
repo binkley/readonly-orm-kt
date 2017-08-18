@@ -5,14 +5,11 @@ import hm.binkley.labs.b.BOutputRecord
 import java.sql.ResultSet
 
 class ABRecordFactory : RecordFactory<AInputRecord, BOutputRecord> {
-    override fun toInputRecord(results: ResultSet): AInputRecord {
-        return AInputRecord(results)
-    }
+    override fun toInputRecord(results: ResultSet) = AInputRecord(results)
 
     override fun maybeDrop(inputRecord: AInputRecord)
             = sequenceOf(inputRecord)
 
-    override fun toOutputRecord(inputRecord: AInputRecord): BOutputRecord {
-        return BOutputRecord.asBOutputRecord(inputRecord)
-    }
+    override fun toOutputRecord(inputRecord: AInputRecord)
+            = BOutputRecord.asBOutputRecord(inputRecord)
 }

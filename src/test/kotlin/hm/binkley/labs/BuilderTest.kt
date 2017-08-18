@@ -1,5 +1,7 @@
 package hm.binkley.labs
 
+import hm.binkley.labs.input.HasFooId
+import hm.binkley.labs.output.OutputRecord.Field
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Rule
@@ -13,18 +15,21 @@ import org.mockito.Mockito.verify
 import java.sql.ResultSet
 
 class BuilderTest {
-    @Rule @JvmField val tmpdir = TemporaryFolder()
+    @Rule
+    @JvmField
+    val tmpdir = TemporaryFolder()
 
-    @Test fun shouldBuild() {
+    @Test
+    fun shouldBuild() {
         val results = mock(ResultSet::class.java)
         `when`(results.next()).thenReturn(true, true, false)
-        `when`(results.getString(eq("fooId"))).thenReturn("A", "B")
+        `when`(results.getString(eq(HasFooId.COLUMN))).thenReturn("A", "B")
         `when`(results.getInt(eq("bazCount"))).thenReturn(3, 4)
 
         val file = tmpdir.newFile()
 
         build(ABRecordFactory(), results, file) {
-            it.map { it.value }.joinToString("|")
+            it.map(Field<*>::value).joinToString("|")
         }
 
         verify(results, times(1)).close()
