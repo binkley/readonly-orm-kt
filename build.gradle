@@ -26,6 +26,7 @@ version = '0-SNAPSHOT'
 
 apply plugin: 'build-dashboard'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 //apply plugin: 'findbugs' -- until BC_BAD_CAST_TO_ABSTRACT_COLLECTION fixed
 apply plugin: 'jacoco'
 //apply plugin: 'io.gitlab.arturbosch.detekt' -- equals/hashcode
