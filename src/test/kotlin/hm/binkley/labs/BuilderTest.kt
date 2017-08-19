@@ -26,8 +26,7 @@ class BuilderTest {
                 thenReturn(true, true, false)
         `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).
                 thenReturn("A", "B")
-        `when`(results.getInt(eq(
-                BazCountFieldFactory.COLUMN))).
+        `when`(results.getInt(eq(BazCountFieldFactory.COLUMN))).
                 thenReturn(3, 4)
 
         val file = tmpdir.newFile()
