@@ -1,7 +1,9 @@
 package hm.binkley.labs.output
 
-interface OutputRecord {
-    fun fields(): Iterable<Field<*>>
+import java.sql.PreparedStatement
 
-    data class Field<T>(val name: String, val value: T, val type: Class<T>)
+interface OutputRecord {
+    fun write(out: Appendable)
+
+    fun save(insert: PreparedStatement)
 }

@@ -2,7 +2,6 @@ package hm.binkley.labs
 
 import hm.binkley.labs.field.BazCountFieldFactory
 import hm.binkley.labs.field.FooIdFieldFactory
-import hm.binkley.labs.output.OutputRecord.Field
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
 import org.junit.Rule
@@ -33,9 +32,7 @@ class BuilderTest {
 
         val file = tmpdir.newFile()
 
-        build(ABRecordFactory(), results, file) {
-            it.map(Field<*>::value).joinToString("|")
-        }
+        build(ABRecordFactory(), results, file)
 
         verify(results, times(1)).close()
 
