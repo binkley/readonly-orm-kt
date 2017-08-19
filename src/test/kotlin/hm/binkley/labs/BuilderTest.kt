@@ -21,11 +21,11 @@ class BuilderTest {
     @JvmField
     val tmpdir = TemporaryFolder()
 
-    private var fooId = with(PreparedStatement::setString, 1)
-    private var barMarker = with(PreparedStatement::setString, 2)
-    private var bazCount = with(PreparedStatement::setInt, 3)
-    private var fooBar = with(PreparedStatement::setString, 4)
-    private var quxMissing = with(PreparedStatement::setString, 5)
+    private var fooId = VerifyInsertSet(PreparedStatement::setString, 1)
+    private var barMarker = VerifyInsertSet(PreparedStatement::setString, 2)
+    private var bazCount = VerifyInsertSet(PreparedStatement::setInt, 3)
+    private var fooBar = VerifyInsertSet(PreparedStatement::setString, 4)
+    private var quxMissing = VerifyInsertSet(PreparedStatement::setString, 5)
 
     @Test
     fun shouldBuild() {
@@ -42,7 +42,6 @@ class BuilderTest {
 
         build(ABRecordFactory(), results, insert, file)
 
-
         fooId.verify(insert, "A", "B")
         barMarker.verify(insert, "Bar marker?", "Bar marker?")
         bazCount.verify(insert, 3, 4)
@@ -55,7 +54,7 @@ class BuilderTest {
                 "B|Bar marker?|4|4 × B|")))
     }
 
-    private data class ColumnValues<T>(
+    private data class VerifyInsertSet<in T>(
             private val setter: (PreparedStatement, Int, T) -> Unit,
             private val index: Int) {
         internal fun verify(insert: PreparedStatement, first: T, second: T) {
@@ -65,11 +64,5 @@ class BuilderTest {
             setter(inOrder.verify(insert, times(1)), eq(index), eq(second))
             inOrder.verify(insert, times(1)).executeUpdate()
         }
-    }
-
-    companion object {
-        private fun <T> with(
-                setter: (PreparedStatement, Int, T) -> Unit, index: Int)
-                = ColumnValues(setter, index)
     }
 }
