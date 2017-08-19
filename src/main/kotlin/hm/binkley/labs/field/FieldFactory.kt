@@ -17,22 +17,6 @@ abstract class FieldFactory<T, F : Field<T, F, C>, C : FieldFactory<T, F,
     @Suppress("UNCHECKED_CAST")
     fun of(value: T) = ctor(value, this as C)
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is FieldFactory<*, *, *>) return false
-
-        if (column != other.column) return false
-        if (reader != other.reader) return false
-        if (ctor != other.ctor) return false
-        if (saver != other.saver) return false
-        if (writer != other.writer) return false
-
-        return true
-    }
-
-    override fun hashCode() = Objects.hash(column, reader, ctor, saver,
-            writer)
-
     abstract class Field<T, F : Field<T, F, C>, C : FieldFactory<T, F,
             C>> protected constructor(
             val value: T,
