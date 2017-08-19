@@ -6,4 +6,4 @@ import hm.binkley.labs.field.FooIdFieldFactory.Companion.fooId
 
 internal class BazCountFormatterTest : FormatterTestBase<AInputRecord, Int>(
         AInputRecord(fooId("FUBAR lives!"), bazCount(3)),
-        { record -> record.bazCount.value }, 3)
+        { record -> BazCountFormatter.bazCount(record).value }, 3)

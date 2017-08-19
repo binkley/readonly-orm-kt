@@ -6,4 +6,4 @@ import hm.binkley.labs.field.FooIdFieldFactory.Companion.fooId
 
 internal class FooIdFormatterTest : FormatterTestBase<AInputRecord, String>(
         AInputRecord(fooId("FUBAR lives!"), bazCount(3)),
-        { (fooId) -> fooId.value }, "FUBAR lives!")
+        { record -> FooIdFormatter.fooId(record).value }, "FUBAR lives!")
