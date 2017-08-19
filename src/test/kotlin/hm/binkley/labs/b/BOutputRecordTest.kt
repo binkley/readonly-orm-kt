@@ -4,6 +4,7 @@ import hm.binkley.labs.a.AInputRecord
 import hm.binkley.labs.b.BOutputRecord.Companion.asBOutputRecord
 import hm.binkley.labs.field.BarMarkerFieldFactory.Companion.barMarker
 import hm.binkley.labs.field.BazCountFieldFactory.Companion.bazCount
+import hm.binkley.labs.field.FooBazFieldFactory.Companion.fooBaz
 import hm.binkley.labs.field.FooIdFieldFactory.Companion.fooId
 import hm.binkley.labs.field.QuxMissingFieldFactory.Companion.quxMissing
 import org.hamcrest.Matchers.`is`
@@ -17,6 +18,7 @@ internal class BOutputRecordTest {
                 bazCount(3))),
                 `is`(BOutputRecord(fooId("FUBAR lives!"),
                         barMarker("Bar marker?"),
-                        bazCount(3), "3 × FUBAR lives!", quxMissing(""))))
+                        bazCount(3), fooBaz("3 × FUBAR lives!"),
+                        quxMissing(""))))
     }
 }

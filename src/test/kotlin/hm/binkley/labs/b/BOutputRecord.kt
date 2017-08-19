@@ -2,6 +2,7 @@ package hm.binkley.labs.b
 
 import hm.binkley.labs.field.BarMarkerFieldFactory.BarMarkerField
 import hm.binkley.labs.field.BazCountFieldFactory.BazCountField
+import hm.binkley.labs.field.FooBazFieldFactory.FooBazField
 import hm.binkley.labs.field.FooIdFieldFactory.FooIdField
 import hm.binkley.labs.field.QuxMissingFieldFactory.QuxMissingField
 import hm.binkley.labs.field.output.BarMarkerFormatter.Companion.barMarker
@@ -23,11 +24,11 @@ data class BOutputRecord(
         private val fooId: FooIdField,
         private val barMarker: BarMarkerField,
         private val bazCount: BazCountField,
-        private val fooBaz: String,
+        private val fooBaz: FooBazField,
         private val quxMissing: QuxMissingField) : OutputRecord {
     override fun fields() = listOf(fooIdField(fooId.value),
             barMarkerField(barMarker.value),
-            bazCountField(bazCount.value), fooBazField(fooBaz),
+            bazCountField(bazCount.value), fooBazField(fooBaz.value),
             quxMissingField(quxMissing.value))
 
     companion object {
