@@ -22,20 +22,20 @@ data class BOutputRecord(
         private val bazCount: BazCountField,
         private val fooBaz: FooBazField,
         private val quxMissing: QuxMissingField) : OutputRecord {
-    override fun write(out: Appendable) {
-        fooId.write(out)
-        listOf(barMarker, bazCount, fooBaz, quxMissing).forEach {
-            it.write(out.append('|'))
-        }
-        out.append('\n')
-    }
-
     override fun save(insert: PreparedStatement) {
         listOf(fooId, barMarker, bazCount, fooBaz, quxMissing).withIndex().
                 forEach {
                     it.value.save(insert, it.index + 1)
                 }
         insert.executeUpdate()
+    }
+
+    override fun write(out: Appendable) {
+        fooId.write(out)
+        listOf(barMarker, bazCount, fooBaz, quxMissing).forEach {
+            it.write(out.append('|'))
+        }
+        out.append('\n')
     }
 
     companion object {
