@@ -122,7 +122,7 @@ style:
     active: true
   MaxLineLength:
     active: true
-    maxLineLength: 120
+    maxLineLength: 80
     excludePackageStatements: false
     excludeImportStatements: false
   NamingConventionViolation:

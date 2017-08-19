@@ -1,5 +1,7 @@
 package hm.binkley.labs.field
 
+import au.com.console.kassava.kotlinEquals
+import au.com.console.kassava.kotlinToString
 import hm.binkley.labs.field.FieldFactory.Field
 import java.sql.PreparedStatement
 import java.sql.ResultSet
@@ -26,15 +28,16 @@ abstract class FieldFactory<T, F : Field<T, F, C>, C : FieldFactory<T, F,
 
         fun write(out: Appendable) = factory.writer(out, value)
 
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (other !is Field<*, *, *>) return false
-            if (value != other.value) return false
-            if (factory != other.factory) return false
-
-            return true
-        }
+        override fun equals(other: Any?)
+                = kotlinEquals(other, properties)
 
         override fun hashCode() = Objects.hash(value, factory)
+
+        override fun toString() = kotlinToString(properties)
+
+        companion object {
+            private val properties = arrayOf(Field<*, *, *>::value,
+                    Field<*, *, *>::factory)
+        }
     }
 }
