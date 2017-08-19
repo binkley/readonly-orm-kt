@@ -1,15 +1,15 @@
 package hm.binkley.labs.b
 
-import hm.binkley.labs.field.BarMarkerFormatter.Companion.barMarker
-import hm.binkley.labs.field.BarMarkerFormatter.Companion.barMarkerField
-import hm.binkley.labs.field.BazCountFormatter.Companion.bazCount
-import hm.binkley.labs.field.BazCountFormatter.Companion.bazCountField
-import hm.binkley.labs.field.FooBazFormatter.Companion.fooBaz
-import hm.binkley.labs.field.FooBazFormatter.Companion.fooBazField
-import hm.binkley.labs.field.FooIdFormatter.Companion.fooId
-import hm.binkley.labs.field.FooIdFormatter.Companion.fooIdField
-import hm.binkley.labs.field.QuxMissingFormatter.Companion.quxMissing
-import hm.binkley.labs.field.QuxMissingFormatter.Companion.quxMissingField
+import hm.binkley.labs.field.output.BarMarkerFormatter.Companion.barMarker
+import hm.binkley.labs.field.output.BarMarkerFormatter.Companion.barMarkerField
+import hm.binkley.labs.field.output.BazCountFormatter.Companion.bazCount
+import hm.binkley.labs.field.output.BazCountFormatter.Companion.bazCountField
+import hm.binkley.labs.field.output.FooBazFormatter.Companion.fooBaz
+import hm.binkley.labs.field.output.FooBazFormatter.Companion.fooBazField
+import hm.binkley.labs.field.output.FooIdFormatter.Companion.fooId
+import hm.binkley.labs.field.output.FooIdFormatter.Companion.fooIdField
+import hm.binkley.labs.field.output.QuxMissingFormatter.Companion.quxMissing
+import hm.binkley.labs.field.output.QuxMissingFormatter.Companion.quxMissingField
 import hm.binkley.labs.input.HasBazCount
 import hm.binkley.labs.input.HasFooId
 import hm.binkley.labs.input.InputRecord

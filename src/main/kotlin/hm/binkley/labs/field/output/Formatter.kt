@@ -1,4 +1,4 @@
-package hm.binkley.labs.field
+package hm.binkley.labs.field.output
 
 import hm.binkley.labs.input.InputRecord
 
