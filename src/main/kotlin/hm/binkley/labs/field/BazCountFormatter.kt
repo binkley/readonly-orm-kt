@@ -1,12 +1,13 @@
 package hm.binkley.labs.field
 
 import hm.binkley.labs.input.HasBazCount
+import hm.binkley.labs.input.HasBazCount.Companion.COLUMN
 import hm.binkley.labs.input.InputRecord
 import hm.binkley.labs.output.OutputRecord.Field
 
 class BazCountFormatter<in I> : Formatter<I, Int>
         where I : InputRecord, I : HasBazCount {
-    override fun format(record: I) = record.bazCount
+    override fun format(record: I) = record.bazCount.value
 
     companion object {
         fun <I> bazCount(record: I)
@@ -14,6 +15,6 @@ class BazCountFormatter<in I> : Formatter<I, Int>
                 = BazCountFormatter<I>().format(record)
 
         fun bazCountField(value: Int)
-                = Field("bazCount", value, Int::class.java)
+                = Field(COLUMN, value, Int::class.java)
     }
 }

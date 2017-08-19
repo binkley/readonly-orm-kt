@@ -8,7 +8,7 @@ import hm.binkley.labs.output.OutputRecord.Field
 class FooBazFormatter<in I> : Formatter<I, String>
         where I : InputRecord, I : HasFooId, I : HasBazCount {
     override fun format(record: I)
-            = "${record.bazCount} × ${record.fooId.value}"
+            = "${record.bazCount.value} × ${record.fooId.value}"
 
     companion object {
         fun <I> fooBaz(record: I)
