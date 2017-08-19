@@ -1,9 +1,9 @@
 package hm.binkley.labs.field.output
 
 import hm.binkley.labs.a.AInputRecord
+import hm.binkley.labs.field.BazCountFieldFactory.Companion.bazCount
+import hm.binkley.labs.field.FooIdFieldFactory.Companion.fooId
 import hm.binkley.labs.field.output.QuxMissingFormatter.Companion
-import hm.binkley.labs.input.HasBazCount.Companion.bazCount
-import hm.binkley.labs.input.HasFooId.Companion.fooId
 
 internal class QuxMissingFormatterTest
     : FormatterTestBase<AInputRecord, String>(

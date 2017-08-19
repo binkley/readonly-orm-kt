@@ -1,6 +1,7 @@
 package hm.binkley.labs
 
-import hm.binkley.labs.input.HasFooId
+import hm.binkley.labs.field.BazCountFieldFactory
+import hm.binkley.labs.field.FooIdFieldFactory
 import hm.binkley.labs.output.OutputRecord.Field
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.junit.MatcherAssert.assertThat
@@ -22,9 +23,13 @@ class BuilderTest {
     @Test
     fun shouldBuild() {
         val results = mock(ResultSet::class.java)
-        `when`(results.next()).thenReturn(true, true, false)
-        `when`(results.getString(eq(HasFooId.COLUMN))).thenReturn("A", "B")
-        `when`(results.getInt(eq("bazCount"))).thenReturn(3, 4)
+        `when`(results.next()).
+                thenReturn(true, true, false)
+        `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).
+                thenReturn("A", "B")
+        `when`(results.getInt(eq(
+                BazCountFieldFactory.COLUMN))).
+                thenReturn(3, 4)
 
         val file = tmpdir.newFile()
 

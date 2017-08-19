@@ -1,7 +1,7 @@
 package hm.binkley.labs.field.output
 
+import hm.binkley.labs.field.BazCountFieldFactory.Companion.COLUMN
 import hm.binkley.labs.input.HasBazCount
-import hm.binkley.labs.input.HasBazCount.Companion.COLUMN
 import hm.binkley.labs.input.InputRecord
 import hm.binkley.labs.output.OutputRecord.Field
 
