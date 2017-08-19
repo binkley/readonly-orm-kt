@@ -7,8 +7,8 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.util.Objects
 
-abstract class FieldFactory<T, F : Field<T, F, C>, C : FieldFactory<T, F,
-        C>> protected constructor(
+abstract class FieldFactory<T, F : Field<T, F, C>, C : FieldFactory<T, F, C>>
+protected constructor(
         private val column: String,
         private val reader: (ResultSet, String) -> T,
         private val ctor: (T, C) -> F,
