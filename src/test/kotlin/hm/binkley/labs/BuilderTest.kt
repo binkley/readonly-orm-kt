@@ -15,6 +15,7 @@ import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import java.sql.Types.VARCHAR
 
 class BuilderTest {
     @Rule
@@ -25,7 +26,9 @@ class BuilderTest {
     private var barMarker = VerifyInsertSet(PreparedStatement::setString, 2)
     private var bazCount = VerifyInsertSet(PreparedStatement::setInt, 3)
     private var fooBar = VerifyInsertSet(PreparedStatement::setString, 4)
-    private var quxMissing = VerifyInsertSet(PreparedStatement::setString, 5)
+    private var quxMissing = VerifyInsertSet<String?>(
+            { insert, index, _ -> insert.setNull(index, VARCHAR) },
+            5)
 
     @Test
     fun shouldBuild() {
@@ -46,7 +49,7 @@ class BuilderTest {
         barMarker.verify(insert, "Bar marker?", "Bar marker?")
         bazCount.verify(insert, 3, 4)
         fooBar.verify(insert, "3 × A", "4 × B")
-        quxMissing.verify(insert, "", "")
+        quxMissing.verify(insert, null, null)
 
         verify(results, times(1)).close()
 
@@ -59,9 +62,9 @@ class BuilderTest {
             private val index: Int) {
         internal fun verify(insert: PreparedStatement, first: T, second: T) {
             val inOrder = inOrder(insert)
-            setter(inOrder.verify(insert, times(1)), eq(index), eq(first))
+            setter(inOrder.verify(insert, times(1)), index, first)
             inOrder.verify(insert, times(1)).executeUpdate()
-            setter(inOrder.verify(insert, times(1)), eq(index), eq(second))
+            setter(inOrder.verify(insert, times(1)), index, second)
             inOrder.verify(insert, times(1)).executeUpdate()
         }
     }

@@ -6,7 +6,7 @@ import hm.binkley.labs.input.InputRecord
 
 class QuxMissingFormatter<in I> : Formatter<I, QuxMissingField>
         where I : InputRecord {
-    override fun format(record: I) = QuxMissingFieldFactory.quxMissing("")
+    override fun format(record: I) = QuxMissingFieldFactory.quxMissing(null)
 
     companion object {
         fun <I> quxMissing(record: I)

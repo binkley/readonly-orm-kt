@@ -5,6 +5,6 @@ import hm.binkley.labs.field.BazCountFieldFactory.Companion.bazCount
 import hm.binkley.labs.field.FooIdFieldFactory.Companion.fooId
 
 internal class QuxMissingFormatterTest
-    : FormatterTestBase<AInputRecord, String>(
+    : FormatterTestBase<AInputRecord, String?>(
         AInputRecord(fooId("FUBAR lives?"), bazCount(3)),
-        { record -> QuxMissingFormatter.quxMissing(record).value }, "")
+        { record -> QuxMissingFormatter.quxMissing(record).value }, null)

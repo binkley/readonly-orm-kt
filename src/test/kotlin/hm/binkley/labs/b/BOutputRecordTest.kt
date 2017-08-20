@@ -19,6 +19,6 @@ internal class BOutputRecordTest {
                 `is`(BOutputRecord(fooId("FUBAR lives!"),
                         barMarker("Bar marker?"),
                         bazCount(3), fooBaz("3 × FUBAR lives!"),
-                        quxMissing(""))))
+                        quxMissing(null))))
     }
 }
