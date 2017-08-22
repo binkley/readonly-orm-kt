@@ -28,16 +28,15 @@ protected constructor(
 
         fun write(out: Appendable) = factory.writer(out, value)
 
-        override fun equals(other: Any?)
-                = kotlinEquals(other, properties)
+        override fun equals(other: Any?) = kotlinEquals(other, properties)
 
         override fun hashCode() = Objects.hash(value, factory)
 
         override fun toString() = kotlinToString(properties)
 
         companion object {
-            private val properties = arrayOf(Field<*, *, *>::value,
-                    Field<*, *, *>::factory)
+            private val properties
+                    = arrayOf(Field<*, *, *>::value, Field<*, *, *>::factory)
         }
     }
 }
