@@ -1,20 +1,24 @@
 buildscript {
     ext {
+        versions_version = '0.15.0'
         kotlin_version = '1.2-M2'
-        detekt_version = '1.0.0.RC2'
+        detekt_version = '1.0.0.RC3'
         hamcrest_version = '2.0.0.0'
         kassava_version = '1.0.0'
-        ktlint_version = '0.9.0'
+        ktlint_version = '0.9.1'
         mockito_version = '2.8.47'
     }
 
     repositories {
         mavenCentral()
+        jcenter()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         maven { url 'https://plugins.gradle.org/m2' }
     }
 
     dependencies {
+        classpath group: 'com.github.ben-manes',
+                name: 'gradle-versions-plugin', version: "${versions_version}"
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin',
                 version: "$kotlin_version"
         classpath group: 'io.gitlab.arturbosch.detekt',
@@ -25,6 +29,7 @@ buildscript {
 group = 'hm.binkley.labs'
 version = '0-SNAPSHOT'
 
+apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'build-dashboard'
 apply plugin: 'kotlin'
 //apply plugin: 'findbugs' -- until BC_BAD_CAST_TO_ABSTRACT_COLLECTION fixed
