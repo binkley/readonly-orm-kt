@@ -61,6 +61,10 @@ dependencies {
             version: "${mockito_version}"
 }
 
+clean {
+    delete 'out'
+}
+
 detekt {
     profile('main') {
         config = "$projectDir/config/detekt/detekt.yml"
@@ -70,6 +74,7 @@ detekt {
 }
 
 task detektReport {
+    dependsOn detektCheck
     doLast {
         ant.xslt(in: "$projectDir/build/reports/detekt/report.xml/detekt-checkstyle.xml",
                 out: "$projectDir/build/reports/detekt/index.html",
@@ -83,6 +88,7 @@ jacoco {
 }
 
 jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
     violationRules {
         rule {
             limit {
@@ -105,10 +111,8 @@ tasks.withType(FindBugs) {
     }
 }
 
-check.dependsOn jacocoTestReport
-check.dependsOn jacocoTestCoverageVerification
-jacocoTestCoverageVerification.mustRunAfter jacocoTestReport
-
-detektReport.dependsOn detektCheck
-check.dependsOn detektReport
-check.dependsOn ktlint
+check {
+    dependsOn jacocoTestReport
+    dependsOn detektReport
+    dependsOn ktlint
+}
