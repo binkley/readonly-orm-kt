@@ -1,7 +1,7 @@
 buildscript {
     ext {
         versions_version = '0.15.0'
-        kotlin_version = '1.2-M2'
+        kotlin_version = '1.2.0-beta-31'
         detekt_version = '1.0.0.RC3'
         hamcrest_version = '2.0.0.0'
         kassava_version = '1.0.0'
