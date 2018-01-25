@@ -16,8 +16,8 @@ class BarMarkerFieldFactory : FieldFactory<String, BarMarkerField,
 
         private val FACTORY = BarMarkerFieldFactory()
 
-        fun barMarker(results: ResultSet): BarMarkerField
-                = FACTORY.read(results)
+        fun barMarker(results: ResultSet): BarMarkerField = FACTORY.read(
+                results)
 
         fun barMarker(value: String): BarMarkerField = FACTORY.of(value)
     }

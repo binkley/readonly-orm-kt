@@ -23,8 +23,8 @@ protected constructor(
             C>> protected constructor(
             val value: T,
             private val factory: C) {
-        fun save(insert: PreparedStatement, index: Int)
-                = factory.saver(insert, index, value)
+        fun save(insert: PreparedStatement, index: Int) = factory.saver(
+                insert, index, value)
 
         fun write(out: Appendable) = factory.writer(out, value)
 
@@ -35,8 +35,8 @@ protected constructor(
         override fun toString() = kotlinToString(properties)
 
         companion object {
-            private val properties
-                    = arrayOf(Field<*, *, *>::value, Field<*, *, *>::factory)
+            private val properties = arrayOf(Field<*, *, *>::value,
+                    Field<*, *, *>::factory)
         }
     }
 }

@@ -17,8 +17,8 @@ class BazCountFieldFactory : FieldFactory<Int, BazCountField,
 
         private val FACTORY = BazCountFieldFactory()
 
-        fun bazCount(results: ResultSet): BazCountField
-                = FACTORY.read(results)
+        fun bazCount(results: ResultSet): BazCountField = FACTORY.read(
+                results)
 
         fun bazCount(value: Int): BazCountField = FACTORY.of(value)
     }

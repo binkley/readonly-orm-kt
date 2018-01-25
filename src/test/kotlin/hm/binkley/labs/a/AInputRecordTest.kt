@@ -16,10 +16,9 @@ internal class AInputRecordTest {
     @Test
     fun shouldConstruct() {
         val results = mock(ResultSet::class.java)
-        `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).
-                thenReturn("FUBAR lives!")
-        `when`(results.getInt(eq(BazCountFieldFactory.COLUMN))).
-                thenReturn(3)
+        `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).thenReturn(
+                "FUBAR lives!")
+        `when`(results.getInt(eq(BazCountFieldFactory.COLUMN))).thenReturn(3)
 
         assertThat(AInputRecord(results),
                 `is`(AInputRecord(fooId("FUBAR lives!"), bazCount(3))))

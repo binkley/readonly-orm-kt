@@ -8,14 +8,12 @@ import java.sql.ResultSet
 
 fun <I : InputRecord, O : OutputRecord> build(
         factory: RecordFactory<I, O>, results: ResultSet,
-        insert: PreparedStatement, file: File)
-        = results.use { input ->
+        insert: PreparedStatement, file: File) = results.use { input ->
     file.bufferedWriter().use { output ->
-        ResultSetIterator(input).asSequence().
-                map { factory.toInputRecord(it) }.
-                flatMap { factory.maybeDrop(it) }.
-                map { factory.toOutputRecord(it) }.
-                onEach { it.save(insert) }.
-                forEach { it.write(output) }
+        ResultSetIterator(input).asSequence().map {
+            factory.toInputRecord(it)
+        }.flatMap { factory.maybeDrop(it) }.map {
+            factory.toOutputRecord(it)
+        }.onEach { it.save(insert) }.forEach { it.write(output) }
     }
 }

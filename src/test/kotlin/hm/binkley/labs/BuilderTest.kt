@@ -33,12 +33,11 @@ class BuilderTest {
     @Test
     fun shouldBuild() {
         val results = mock(ResultSet::class.java)
-        `when`(results.next()).
-                thenReturn(true, true, false)
-        `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).
-                thenReturn("A", "B")
-        `when`(results.getInt(eq(BazCountFieldFactory.COLUMN))).
-                thenReturn(3, 4)
+        `when`(results.next()).thenReturn(true, true, false)
+        `when`(results.getString(eq(FooIdFieldFactory.COLUMN))).thenReturn(
+                "A", "B")
+        `when`(results.getInt(eq(BazCountFieldFactory.COLUMN))).thenReturn(3,
+                4)
         val insert = mock(PreparedStatement::class.java)
 
         val file = tmpdir.newFile()

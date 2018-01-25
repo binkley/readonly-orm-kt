@@ -10,7 +10,7 @@ class BazCountFormatter<in I> : Formatter<I, BazCountField>
 
     companion object {
         fun <I> bazCount(record: I)
-                where I : InputRecord, I : HasBazCount
-                = BazCountFormatter<I>().format(record)
+                where I : InputRecord, I : HasBazCount = BazCountFormatter<I>().format(
+                record)
     }
 }

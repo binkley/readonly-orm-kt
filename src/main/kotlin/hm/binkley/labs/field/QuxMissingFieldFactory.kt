@@ -18,8 +18,8 @@ class QuxMissingFieldFactory : FieldFactory<String?, QuxMissingField,
 
         private val FACTORY = QuxMissingFieldFactory()
 
-        fun quxMissing(results: ResultSet): QuxMissingField
-                = FACTORY.read(results)
+        fun quxMissing(results: ResultSet): QuxMissingField = FACTORY.read(
+                results)
 
         fun quxMissing(value: String?): QuxMissingField = FACTORY.of(value)
     }

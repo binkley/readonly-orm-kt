@@ -7,9 +7,10 @@ import java.sql.ResultSet
 class ABRecordFactory : RecordFactory<AInputRecord, BOutputRecord> {
     override fun toInputRecord(results: ResultSet) = AInputRecord(results)
 
-    override fun maybeDrop(inputRecord: AInputRecord)
-            = sequenceOf(inputRecord)
+    override fun maybeDrop(inputRecord: AInputRecord) = sequenceOf(
+            inputRecord)
 
-    override fun toOutputRecord(inputRecord: AInputRecord)
-            = BOutputRecord.asBOutputRecord(inputRecord)
+    override fun toOutputRecord(
+            inputRecord: AInputRecord) = BOutputRecord.asBOutputRecord(
+            inputRecord)
 }

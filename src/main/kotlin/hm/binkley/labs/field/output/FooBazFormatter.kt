@@ -8,12 +8,12 @@ import hm.binkley.labs.input.InputRecord
 
 class FooBazFormatter<in I> : Formatter<I, FooBazField>
         where I : InputRecord, I : HasFooId, I : HasBazCount {
-    override fun format(record: I)
-            = fooBaz("${record.bazCount.value} × ${record.fooId.value}")
+    override fun format(record: I) = fooBaz(
+            "${record.bazCount.value} × ${record.fooId.value}")
 
     companion object {
         fun <I> fooBaz(record: I)
-                where I : InputRecord, I : HasFooId, I : HasBazCount
-                = FooBazFormatter<I>().format(record)
+                where I : InputRecord, I : HasFooId, I : HasBazCount = FooBazFormatter<I>().format(
+                record)
     }
 }
